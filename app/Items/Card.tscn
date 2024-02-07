@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/fonts/Cards-LVMG.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/WigglyCurvesRegular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Items/Card.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/AcedIt-gD91.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=1]
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.784314, 0, 0, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=5]
+size = 140
+font_data = ExtResource( 4 )
+
+[node name="Card" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="BgCard" type="Panel" parent="."]
+margin_left = -50.0
+margin_top = -75.0
+margin_right = 50.0
+margin_bottom = 75.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="Labels" type="Node2D" parent="."]
+
+[node name="TopCardDigitLabel" type="Label" parent="Labels"]
+margin_left = -45.0
+margin_top = -70.0
+margin_right = -30.0
+margin_bottom = -50.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="BottomCardDigitLabel" type="Label" parent="Labels"]
+margin_left = 45.0
+margin_top = 70.0
+margin_right = 60.0
+margin_bottom = 90.0
+rect_rotation = 180.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "9"
+align = 1
+valign = 1
+
+[node name="TopCardSymLabel" type="Label" parent="Labels"]
+margin_left = -45.0
+margin_top = -50.0
+margin_right = -30.0
+margin_bottom = -30.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="BottomCardSymLabel" type="Label" parent="Labels"]
+margin_left = 45.0
+margin_top = 50.0
+margin_right = 60.0
+margin_bottom = 70.0
+rect_rotation = 180.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="CenterCardSymLabel" type="Label" parent="Labels"]
+margin_left = -41.0
+margin_top = -67.0
+margin_right = 43.0
+margin_bottom = 65.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "2"
+align = 1
+valign = 1
+
+[node name="BackCard" type="Node2D" parent="."]
+position = Vector2( -50, -65 )
+
+[node name="BackBgPanel" type="Panel" parent="BackCard"]
+margin_left = 5.0
+margin_top = -5.0
+margin_right = 95.0
+margin_bottom = 135.0
+custom_styles/panel = SubResource( 6 )
+
+[node name="BackCardLabel" type="Label" parent="BackCard"]
+margin_top = 2.0
+margin_right = 100.0
+margin_bottom = 153.0
+custom_colors/font_color = Color( 0.784314, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "6"
+align = 1
+valign = 1
