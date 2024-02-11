@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/bg/wooden.png" type="Texture" id=1]
 [ext_resource path="res://assets/icon/grains.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://GameTable.gd" type="Script" id=7]
 [ext_resource path="res://Items/PlayerBid.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Items/ChickenBid.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Items/SayBox.tscn" type="PackedScene" id=10]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 1, 1, 1, 1 )
@@ -114,6 +115,9 @@ text = "30
 align = 1
 valign = 1
 
+[node name="SayBox" parent="ControlsUI" instance=ExtResource( 10 )]
+position = Vector2( 180, 60 )
+
 [node name="PlayerBidHolder" type="Node2D" parent="."]
 position = Vector2( 399, 540 )
 
@@ -125,3 +129,16 @@ position = Vector2( 390, 220 )
 
 [node name="PlayerCardHolder" type="Node2D" parent="."]
 position = Vector2( 390, 400 )
+
+[node name="TimersGroup" type="Node2D" parent="."]
+
+[node name="MessageTimer" type="Timer" parent="TimersGroup"]
+wait_time = 2.0
+one_shot = true
+
+[node name="FinishRoundTimer" type="Timer" parent="TimersGroup"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="TimersGroup/MessageTimer" to="." method="_on_MessageTimer_timeout"]
+[connection signal="timeout" from="TimersGroup/FinishRoundTimer" to="." method="_on_FinishRoundTimer_timeout"]
