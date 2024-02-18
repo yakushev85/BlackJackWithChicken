@@ -3,6 +3,11 @@ extends Node2D
 var RED_COLOR = Color("ff0000")
 var BLACK_COLOR = Color("000000")
 
+export var speed = 500
+
+var move_position = Vector2.ZERO
+var is_moving = false
+
 func _ready():
 	set_bstatus(true)
 
@@ -62,3 +67,22 @@ func get_card_val():
 		return 11
 	else:
 		return int(pval)
+
+
+func move_to(new_position):
+	is_moving = true
+	move_position = new_position
+
+
+func _process(delta):
+	if is_moving:
+		var velocity = move_position - position
+		
+		if velocity.length() > 1:
+			position = position + velocity.normalized()*speed*delta 
+		else:
+			position = move_position
+			is_moving = false
+			return
+		
+		
