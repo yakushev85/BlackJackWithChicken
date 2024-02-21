@@ -3,6 +3,7 @@ extends Node2D
 export (PackedScene) var card_item_type
 export (PackedScene) var player_bid_item_type
 export (PackedScene) var chicken_bid_item_type
+export (PackedScene) var message_hint_type
 
 export var max_bid_value = 5
 
@@ -148,6 +149,7 @@ func init_chicken_bids():
 func chicken_win_round():
 	is_locked = true
 	chicken_eggs = chicken_eggs + chicken_bid_value
+	show_message_hint($ControlsUI/ChickenEggs, chicken_bid_value)
 	chicken_bid_value = 0
 	player_bid_value = 0
 	
@@ -163,7 +165,9 @@ func chicken_win_round():
 func player_win_round():
 	is_locked = true
 	player_won_eggs = player_won_eggs + chicken_bid_value
+	show_message_hint($ControlsUI/PlayerEggs, chicken_bid_value, false)
 	player_grains = player_grains + player_bid_value
+	show_message_hint($ControlsUI/PlayerGrains, player_bid_value, false)
 	chicken_bid_value = 0
 	player_bid_value = 0
 	
@@ -215,9 +219,11 @@ func _on_BidButton_pressed():
 	if player_bid_value < max_bid_value and is_first_turn:
 		add_bid($PlayerBidHolder, player_bid_value, player_bid_item_type)
 		player_grains = player_grains - 1
+		show_message_hint($ControlsUI/PlayerGrains, -1, false)
 		player_bid_value = player_bid_value + 1
 		add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type)
 		chicken_eggs = chicken_eggs - 1
+		show_message_hint($ControlsUI/ChickenEggs, -1)
 		chicken_bid_value = chicken_bid_value + 1
 		update_values()
 		print("added bids ", player_bid_value, " : ", chicken_bid_value)
@@ -228,9 +234,11 @@ func _on_DoubleButton_pressed():
 	if is_not_doubled and player_grains - player_bid_value > 0 and chicken_eggs - chicken_bid_value > 0:
 		add_bid($PlayerBidHolder, player_bid_value, player_bid_item_type)
 		player_grains = player_grains - player_bid_value
+		show_message_hint($ControlsUI/PlayerGrains, -player_bid_value, false)
 		player_bid_value = 2*player_bid_value
 		add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type)
 		chicken_eggs = chicken_eggs - chicken_bid_value
+		show_message_hint($ControlsUI/ChickenEggs, -chicken_bid_value)
 		chicken_bid_value = 2*chicken_bid_value
 		print("added bids ", player_bid_value, " : ", chicken_bid_value)
 		is_not_doubled = false
@@ -254,3 +262,15 @@ func _on_HitButton_pressed():
 func _on_StandButton_pressed():
 	chicken_turn()
 
+
+func show_message_hint(pobject, hvalue, vorientation=true):
+	var grain_hint = message_hint_type.instance()
+	grain_hint.position = pobject.position
+	grain_hint.set_orientation_drop(vorientation)
+	
+	$MessageHintHolder.add_child(grain_hint)
+	
+	if hvalue >= 0:
+		grain_hint.set_heal_message("+" + str(hvalue))
+	else:
+		grain_hint.set_damage_message(str(hvalue))
