@@ -80,7 +80,7 @@ func add_card(card_holder, card_index, card_id, will_move = false):
 	card.set_cardid(card_id)
 	
 	if will_move:
-		card.position = Vector2(card_index*card_offset, -600)
+		card.position = Vector2(card_index*card_offset-600, 0)
 	else:
 		card.position.x = card_index*card_offset
 		
@@ -123,11 +123,13 @@ func get_cards_sum(acards):
 	
 	return rsum
 
-func add_bid(bid_holder, bid_index, bit_type):
+func add_bid(bid_holder, bid_index, bit_type, start_y=300):
 	var bid_item = bit_type.instance()
 	bid_item.position.x = bid_index*bid_offset
+	bid_item.position.y = start_y
 	bid_holder.add_child(bid_item)
 	all_bids.append(bid_item)
+	bid_item.move_to(Vector2(bid_item.position.x, 0))
 
 
 func init_player_bids():
@@ -139,7 +141,7 @@ func init_player_bids():
 	
 func init_chicken_bids():
 	chicken_bid_value = 0
-	add_bid($ChickenBidHolder, 0, chicken_bid_item_type)
+	add_bid($ChickenBidHolder, 0, chicken_bid_item_type, -300)
 	chicken_eggs = chicken_eggs - 1
 	chicken_bid_value = chicken_bid_value + 1
 
@@ -216,7 +218,7 @@ func _on_BidButton_pressed():
 		player_grains = player_grains - 1
 		show_message_hint($ControlsUI/PlayerGrains, -1, false)
 		player_bid_value = player_bid_value + 1
-		add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type)
+		add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type, -300)
 		chicken_eggs = chicken_eggs - 1
 		show_message_hint($ControlsUI/ChickenEggs, -1)
 		chicken_bid_value = chicken_bid_value + 1
@@ -231,7 +233,7 @@ func _on_DoubleButton_pressed():
 		player_grains = player_grains - player_bid_value
 		show_message_hint($ControlsUI/PlayerGrains, -player_bid_value, false)
 		player_bid_value = 2*player_bid_value
-		add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type)
+		add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type, -300)
 		chicken_eggs = chicken_eggs - chicken_bid_value
 		show_message_hint($ControlsUI/ChickenEggs, -chicken_bid_value)
 		chicken_bid_value = 2*chicken_bid_value
