@@ -83,6 +83,5 @@ func _process(delta):
 		else:
 			position = move_position
 			is_moving = false
-			return
 		
 		

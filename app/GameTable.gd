@@ -24,7 +24,6 @@ var player_bid_value = 0
 
 var is_first_turn = true
 var is_not_doubled = true
-var is_locked = false
 
 var player_grains = 30
 var chicken_eggs = 30
@@ -36,7 +35,6 @@ func _ready():
 	init_round()
 
 func init_round():
-	is_locked = false
 	is_first_turn = true
 	init_deck()
 	init_cards()
@@ -147,7 +145,6 @@ func init_chicken_bids():
 
 
 func chicken_win_round():
-	is_locked = true
 	chicken_eggs = chicken_eggs + chicken_bid_value
 	show_message_hint($ControlsUI/ChickenEggs, chicken_bid_value)
 	chicken_bid_value = 0
@@ -163,7 +160,6 @@ func chicken_win_round():
 	
 
 func player_win_round():
-	is_locked = true
 	player_won_eggs = player_won_eggs + chicken_bid_value
 	show_message_hint($ControlsUI/PlayerEggs, chicken_bid_value, false)
 	player_grains = player_grains + player_bid_value
@@ -181,7 +177,6 @@ func player_win_round():
 
 
 func chicken_turn():
-	is_locked = true
 	chicken_cards[chicken_cards.size() - 1].set_bstatus(false)
 	var player_card_sum = get_cards_sum(player_cards)
 	var chicken_card_sum = get_cards_sum(chicken_cards)
@@ -274,3 +269,4 @@ func show_message_hint(pobject, hvalue, vorientation=true):
 		grain_hint.set_heal_message("+" + str(hvalue))
 	else:
 		grain_hint.set_damage_message(str(hvalue))
+

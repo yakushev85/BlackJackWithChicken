@@ -180,7 +180,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="FinishRoundTimer" type="Timer" parent="TimersGroup"]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="MessageHintHolder" type="Node2D" parent="."]
