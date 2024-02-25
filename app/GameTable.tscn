@@ -93,34 +93,31 @@ texture = ExtResource( 3 )
 
 [node name="ChickenEggsLabel" type="Label" parent="ControlsUI"]
 margin_left = 844.0
-margin_top = 30.0
+margin_top = 20.0
 margin_right = 897.0
-margin_bottom = 110.0
+margin_bottom = 100.0
 custom_fonts/font = SubResource( 1 )
-text = "30
-"
+text = "30"
 align = 1
 valign = 1
 
 [node name="PlayerEggsLabel" type="Label" parent="ControlsUI"]
 margin_left = 844.0
-margin_top = 505.0
+margin_top = 495.0
 margin_right = 897.0
-margin_bottom = 585.0
+margin_bottom = 575.0
 custom_fonts/font = SubResource( 1 )
-text = "0
-"
+text = "0"
 align = 1
 valign = 1
 
 [node name="PlayerGrainsLabel" type="Label" parent="ControlsUI"]
 margin_left = 120.0
-margin_top = 505.0
+margin_top = 495.0
 margin_right = 173.0
-margin_bottom = 585.0
+margin_bottom = 575.0
 custom_fonts/font = SubResource( 1 )
-text = "30
-"
+text = "30"
 align = 1
 valign = 1
 
@@ -183,6 +180,9 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="GameStepTimer" type="Timer" parent="TimersGroup"]
+one_shot = true
+
 [node name="MessageHintHolder" type="Node2D" parent="."]
 
 [connection signal="pressed" from="ControlsUI/AllButtons/HitButton" to="." method="_on_HitButton_pressed"]
@@ -191,3 +191,4 @@ one_shot = true
 [connection signal="pressed" from="ControlsUI/AllButtons/DoubleButton" to="." method="_on_DoubleButton_pressed"]
 [connection signal="timeout" from="TimersGroup/MessageTimer" to="." method="_on_MessageTimer_timeout"]
 [connection signal="timeout" from="TimersGroup/FinishRoundTimer" to="." method="_on_FinishRoundTimer_timeout"]
+[connection signal="timeout" from="TimersGroup/GameStepTimer" to="." method="_on_GameStepTimer_timeout"]
