@@ -27,7 +27,7 @@ var player_bid_value = 0
 var is_first_turn = true
 var is_not_doubled = true
 
-var player_grains = 30
+var player_grains = 40
 var chicken_eggs = 30
 var player_won_eggs = 0
 
@@ -35,6 +35,10 @@ func _ready():
 	randomize()
 	$ControlsUI/SayBox.hide()
 	$ControlsUI/AllButtons.hide()
+	
+	$ControlsUI/PlayerGrainsLabel.text = str(player_grains)
+	$ControlsUI/ChickenEggsLabel.text = str(chicken_eggs)
+	
 	init_round()
 
 func init_round():
@@ -262,6 +266,12 @@ func _on_FinishRoundTimer_timeout():
 	chicken_cards = []
 	
 	init_round()
+	
+	if player_grains <= 0 or chicken_eggs <= 0:
+		Global.game_data.player_eggs = player_won_eggs
+		Global.game_data.player_grains = player_grains
+		Global.game_data.chicken_eggs = chicken_eggs
+		get_tree().change_scene("res://FinishScreen.tscn")
 	
 
 func _on_BidButton_pressed():
