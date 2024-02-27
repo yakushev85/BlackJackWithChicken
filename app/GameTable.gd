@@ -116,12 +116,11 @@ func do_chicken_turn():
 	
 	if chicken_card_sum < 0:
 		player_win_round()
-		return
-		
-	if chicken_card_sum > 0 and chicken_card_sum < player_card_sum:
+	elif chicken_card_sum < player_card_sum or (chicken_card_sum == player_card_sum and player_card_sum <= 11):
 		do_array.append("chicken_card:2")
 		do_array.append("chicken_turn:1")
-		return
+	elif chicken_card_sum == player_card_sum:
+		draw_round()
 	else:
 		chicken_win_round()
 		
@@ -231,7 +230,24 @@ func chicken_win_round():
 	
 	show_message("I win this round!!")
 	$TimersGroup/FinishRoundTimer.start()
+
+
+func draw_round():
+	player_grains = player_grains + player_bid_value
+	show_message_hint($ControlsUI/PlayerGrains, player_bid_value, false)
+	chicken_eggs = chicken_eggs + chicken_bid_value
+	show_message_hint($ControlsUI/ChickenEggs, chicken_bid_value)
+	chicken_bid_value = 0
+	player_bid_value = 0
 	
+	for ibid in all_bids:
+		ibid.queue_free()
+	
+	all_bids = []
+	
+	show_message("Draw!!")
+	$TimersGroup/FinishRoundTimer.start()
+
 
 func player_win_round():
 	player_won_eggs = player_won_eggs + chicken_bid_value
@@ -283,7 +299,7 @@ func _on_BidButton_pressed():
 
 
 func _on_DoubleButton_pressed():
-	if is_not_doubled and player_grains - player_bid_value > 0 and chicken_eggs - chicken_bid_value > 0:
+	if is_not_doubled and player_grains - player_bid_value >= 0 and chicken_eggs - chicken_bid_value >= 0:
 		is_not_doubled = false
 		$ControlsUI/AllButtons.hide()
 		
@@ -307,6 +323,7 @@ func _on_HitButton_pressed():
 
 
 func _on_StandButton_pressed():
+	$ControlsUI/AllButtons.hide()
 	do_array = ["chicken_turn:1"]
 	exec_do_array()
 
