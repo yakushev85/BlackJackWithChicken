@@ -85,15 +85,18 @@ func exec_do_array():
 # start section for do funcs
 # **************************
 func do_player_bid():
-	add_bid($PlayerBidHolder, player_bid_value, player_bid_item_type)
+	add_bid($PlayerBidHolder, player_bid_value, player_bid_item_type, -300)
 	player_grains = player_grains - 1
 	show_message_hint($ControlsUI/PlayerGrains, -1, false)
 	player_bid_value = player_bid_value + 1
 	update_values()
+	
+	if player_bid_value == max_bid_value:
+		$ControlsUI/AllButtons/BidButton.hide()
 		
 
 func do_chicken_bid():
-	add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type, -300)
+	add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type)
 	chicken_eggs = chicken_eggs - 1
 	show_message_hint($ControlsUI/ChickenEggs, -1)
 	chicken_bid_value = chicken_bid_value + 1
@@ -208,61 +211,67 @@ func get_cards_sum(acards):
 	return rsum
 
 
-func add_bid(bid_holder, bid_index, bit_type, start_y=300):
+func add_bid(bid_holder, bid_index, bit_type, start_x=500, start_y=0):
 	var bid_item = bit_type.instance()
-	bid_item.position.x = bid_index*bid_offset
+	bid_item.position.x = start_x
 	bid_item.position.y = start_y
 	bid_holder.add_child(bid_item)
 	all_bids.append(bid_item)
-	bid_item.move_to(Vector2(bid_item.position.x, 0))
+	bid_item.move_to(Vector2(bid_index*bid_offset, 0))
 
 
 func chicken_win_round():
+	for player_bid_obj in $PlayerBidHolder.get_children():
+		player_bid_obj.move_to(Vector2(-263,-410))
+	
+	for chicken_bid_obj in $ChickenBidHolder.get_children():
+		chicken_bid_obj.move_to(Vector2(550, 0))
+	
 	chicken_eggs = chicken_eggs + chicken_bid_value
 	show_message_hint($ControlsUI/ChickenEggs, chicken_bid_value)
 	chicken_bid_value = 0
 	player_bid_value = 0
+	update_values()
 	
-	for ibid in all_bids:
-		ibid.queue_free()
-	
-	all_bids = []
-	
-	show_message("I win this round!!")
+	show_message("I win this round! Tasty grains!!")
 	$TimersGroup/FinishRoundTimer.start()
 
 
 func draw_round():
+	for player_bid_obj in $PlayerBidHolder.get_children():
+		player_bid_obj.move_to(Vector2(-325, 0))
+	
+	for chicken_bid_obj in $ChickenBidHolder.get_children():
+		chicken_bid_obj.move_to(Vector2(550, 0))
+	
 	player_grains = player_grains + player_bid_value
 	show_message_hint($ControlsUI/PlayerGrains, player_bid_value, false)
 	chicken_eggs = chicken_eggs + chicken_bid_value
 	show_message_hint($ControlsUI/ChickenEggs, chicken_bid_value)
 	chicken_bid_value = 0
 	player_bid_value = 0
-	
-	for ibid in all_bids:
-		ibid.queue_free()
-	
-	all_bids = []
+	update_values()
 	
 	show_message("Draw!!")
 	$TimersGroup/FinishRoundTimer.start()
 
 
 func player_win_round():
+	for player_bid_obj in $PlayerBidHolder.get_children():
+		player_bid_obj.move_to(Vector2(-325, 0))
+	
+	for chicken_bid_obj in $ChickenBidHolder.get_children():
+		chicken_bid_obj.move_to(Vector2(550, 450))
+	
 	player_won_eggs = player_won_eggs + chicken_bid_value
 	show_message_hint($ControlsUI/PlayerEggs, chicken_bid_value, false)
 	player_grains = player_grains + player_bid_value
 	show_message_hint($ControlsUI/PlayerGrains, player_bid_value, false)
 	chicken_bid_value = 0
 	player_bid_value = 0
+	update_values()
 	
-	for ibid in all_bids:
-		ibid.queue_free()
-	
-	all_bids = []
-	
-	show_message("You win this round!!")
+	show_message("You win this round! Eh, no grains.")
 	$TimersGroup/FinishRoundTimer.start()
 
 
@@ -271,6 +280,11 @@ func _on_MessageTimer_timeout():
 
 
 func _on_FinishRoundTimer_timeout():
+	for ibid in all_bids:
+		ibid.queue_free()
+	
+	all_bids = []
+	
 	for icard in player_cards:
 		icard.queue_free()
 	
@@ -291,10 +305,8 @@ func _on_FinishRoundTimer_timeout():
 	
 
 func _on_BidButton_pressed():
-	if player_bid_value < max_bid_value and is_first_turn:
-		$ControlsUI/AllButtons.hide()
-		
-		do_array = ["player_bid:2", "chicken_bid:2", "show_buttons:1"]
+	if player_bid_value < max_bid_value and is_first_turn and player_grains > 0 and chicken_eggs > 0:
+		do_array.append_array(["player_bid:1", "chicken_bid:2"])
 		exec_do_array()
 
 
@@ -304,7 +316,7 @@ func _on_DoubleButton_pressed():
 		$ControlsUI/AllButtons.hide()
 		
 		for i in range(player_bid_value):
-			do_array.append_array(["player_bid:2", "chicken_bid:2"])
+			do_array.append_array(["player_bid:1", "chicken_bid:1"])
 		
 		do_array.append_array(["player_card:2", "chicken_turn:2"])
 		exec_do_array()
@@ -336,7 +348,7 @@ func show_message_hint(pobject, hvalue, vorientation=true):
 	$MessageHintHolder.add_child(grain_hint)
 	
 	if hvalue >= 0:
-		grain_hint.set_heal_message("+" + str(hvalue))
+		grain_hint.set_reward_message("+" + str(hvalue))
 	else:
 		grain_hint.set_damage_message(str(hvalue))
 
