@@ -26,6 +26,7 @@ var player_bid_value = 0
 
 var is_first_turn = true
 var is_not_doubled = true
+var is_bidding = false
 
 var player_grains = 40
 var chicken_eggs = 30
@@ -85,6 +86,8 @@ func exec_do_array():
 # start section for do funcs
 # **************************
 func do_player_bid():
+	is_bidding = true
+	
 	add_bid($PlayerBidHolder, player_bid_value, player_bid_item_type, -300)
 	player_grains = player_grains - 1
 	show_message_hint($ControlsUI/PlayerGrains, -1, false)
@@ -93,7 +96,7 @@ func do_player_bid():
 	
 	if player_bid_value == max_bid_value:
 		$ControlsUI/AllButtons/BidButton.hide()
-		
+	
 
 func do_chicken_bid():
 	add_bid($ChickenBidHolder, chicken_bid_value, chicken_bid_item_type)
@@ -102,6 +105,7 @@ func do_chicken_bid():
 	chicken_bid_value = chicken_bid_value + 1
 	update_values()
 	
+	is_bidding = false
 	
 func do_player_card():
 	player_cards.append(add_card($PlayerCardHolder, player_cards.size(), get_card_from_deck(), true))
@@ -305,6 +309,9 @@ func _on_FinishRoundTimer_timeout():
 	
 
 func _on_BidButton_pressed():
+	if is_bidding:
+		return
+	
 	if player_bid_value < max_bid_value and is_first_turn and player_grains > 0 and chicken_eggs > 0:
 		do_array.append_array(["player_bid:1", "chicken_bid:2"])
 		exec_do_array()
