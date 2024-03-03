@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grains.png-2776322a0b59b4cad441bc6469541d3e.stex"
+path="res://.import/one_egg2.png-76e754f06b71325b1f7a72ad364c6d77.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icon/grains.png"
-dest_files=[ "res://.import/grains.png-2776322a0b59b4cad441bc6469541d3e.stex" ]
+source_file="res://assets/icon/one_egg2.png"
+dest_files=[ "res://.import/one_egg2.png-76e754f06b71325b1f7a72ad364c6d77.stex" ]
 
 [params]
 

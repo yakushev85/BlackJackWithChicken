@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/icon/one_egg.png" type="Texture" id=1]
+[ext_resource path="res://assets/icon/one_egg2.png" type="Texture" id=1]
 [ext_resource path="res://Items/ChickenBid.gd" type="Script" id=2]
 
 [node name="ChickenBid" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="BidImage" type="Sprite" parent="."]
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 1 )
