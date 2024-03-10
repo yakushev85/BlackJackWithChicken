@@ -41,6 +41,8 @@ func _ready():
 	$ControlsUI/ChickenEggsLabel.text = str(chicken_eggs)
 	
 	init_round()
+	
+	$BgMusicPlayer.play()
 
 func init_round():
 	show_message("Let's play, human!")
