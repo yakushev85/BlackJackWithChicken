@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/bg/finish_screen.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/WigglyCurvesRegular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://FinishScreen.gd" type="Script" id=3]
+[ext_resource path="res://assets/sound/rooster3.mp3" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
@@ -45,5 +46,8 @@ custom_fonts/font = SubResource( 2 )
 text = "You won % eggs! Not all! Try again!!"
 align = 1
 valign = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]

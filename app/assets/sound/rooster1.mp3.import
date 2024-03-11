@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rooster1.mp3-8a999b0e4d3edbb8d4f70aa3eb0b4e1b.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/rooster1.mp3"
+dest_files=[ "res://.import/rooster1.mp3-8a999b0e4d3edbb8d4f70aa3eb0b4e1b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

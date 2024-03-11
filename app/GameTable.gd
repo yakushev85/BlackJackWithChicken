@@ -43,6 +43,7 @@ func _ready():
 	init_round()
 	
 	$BgMusicPlayer.play()
+	$WelcomeStreamPlayer.play()
 
 func init_round():
 	show_message("Let's play, human!")
@@ -227,6 +228,8 @@ func add_bid(bid_holder, bid_index, bit_type, start_x=500, start_y=0):
 
 
 func chicken_win_round():
+	$PlayerLossAudioPlayer.play()
+	
 	for player_bid_obj in $PlayerBidHolder.get_children():
 		player_bid_obj.move_to(Vector2(-263,-410))
 	
@@ -244,6 +247,8 @@ func chicken_win_round():
 
 
 func draw_round():
+	$PlayerLossAudioPlayer.play()
+	
 	for player_bid_obj in $PlayerBidHolder.get_children():
 		player_bid_obj.move_to(Vector2(-325, 0))
 	
@@ -263,6 +268,8 @@ func draw_round():
 
 
 func player_win_round():
+	$PlayerWinAudioPlayer.play()
+	
 	for player_bid_obj in $PlayerBidHolder.get_children():
 		player_bid_obj.move_to(Vector2(-325, 0))
 	
@@ -311,6 +318,8 @@ func _on_FinishRoundTimer_timeout():
 	
 
 func _on_BidButton_pressed():
+	$ClickAudioPlayer.play()
+	
 	if is_bidding:
 		return
 	
@@ -320,6 +329,8 @@ func _on_BidButton_pressed():
 
 
 func _on_DoubleButton_pressed():
+	$ClickAudioPlayer.play()
+	
 	if is_not_doubled and player_grains - player_bid_value >= 0 and chicken_eggs - chicken_bid_value >= 0:
 		is_not_doubled = false
 		$ControlsUI/AllButtons.hide()
@@ -332,6 +343,8 @@ func _on_DoubleButton_pressed():
 
 
 func _on_HitButton_pressed():
+	$ClickAudioPlayer.play()
+	
 	if get_cards_sum(player_cards) > 0:
 		is_first_turn = false
 		$ControlsUI/AllButtons.hide()
@@ -344,6 +357,8 @@ func _on_HitButton_pressed():
 
 
 func _on_StandButton_pressed():
+	$ClickAudioPlayer.play()
+	
 	$ControlsUI/AllButtons.hide()
 	do_array = ["chicken_turn:1"]
 	exec_do_array()

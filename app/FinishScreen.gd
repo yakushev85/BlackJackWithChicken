@@ -2,6 +2,8 @@ extends Node2D
 
 
 func _ready():
+	$AudioStreamPlayer.play()
+	
 	if Global.game_data.chicken_eggs <= 0:
 		$GenLabel.hide()
 	else:
