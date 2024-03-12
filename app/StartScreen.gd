@@ -1,4 +1,8 @@
-extends Button
+extends Node2D
+
+
+func _ready():
+	$WelcomeAudioStreamPlayer.play()
 
 
 func _on_StartButton_pressed():
