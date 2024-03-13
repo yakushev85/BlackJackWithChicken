@@ -231,10 +231,10 @@ func chicken_win_round():
 	$PlayerLossAudioPlayer.play()
 	
 	for player_bid_obj in $PlayerBidHolder.get_children():
-		player_bid_obj.move_to(Vector2(-263,-410))
+		player_bid_obj.move_to(Vector2(-263,-410), true)
 	
 	for chicken_bid_obj in $ChickenBidHolder.get_children():
-		chicken_bid_obj.move_to(Vector2(550, 0))
+		chicken_bid_obj.move_to(Vector2(550, 0), true)
 	
 	chicken_eggs = chicken_eggs + chicken_bid_value
 	show_message_hint($ControlsUI/ChickenEggs, chicken_bid_value)
@@ -250,10 +250,10 @@ func draw_round():
 	$PlayerLossAudioPlayer.play()
 	
 	for player_bid_obj in $PlayerBidHolder.get_children():
-		player_bid_obj.move_to(Vector2(-325, 0))
+		player_bid_obj.move_to(Vector2(-325, 0), true)
 	
 	for chicken_bid_obj in $ChickenBidHolder.get_children():
-		chicken_bid_obj.move_to(Vector2(550, 0))
+		chicken_bid_obj.move_to(Vector2(550, 0), true)
 	
 	player_grains = player_grains + player_bid_value
 	show_message_hint($ControlsUI/PlayerGrains, player_bid_value, false)
@@ -271,10 +271,10 @@ func player_win_round():
 	$PlayerWinAudioPlayer.play()
 	
 	for player_bid_obj in $PlayerBidHolder.get_children():
-		player_bid_obj.move_to(Vector2(-325, 0))
+		player_bid_obj.move_to(Vector2(-325, 0), true)
 	
 	for chicken_bid_obj in $ChickenBidHolder.get_children():
-		chicken_bid_obj.move_to(Vector2(550, 450))
+		chicken_bid_obj.move_to(Vector2(550, 450), true)
 	
 	player_won_eggs = player_won_eggs + chicken_bid_value
 	show_message_hint($ControlsUI/PlayerEggs, chicken_bid_value, false)
@@ -293,9 +293,6 @@ func _on_MessageTimer_timeout():
 
 
 func _on_FinishRoundTimer_timeout():
-	for ibid in all_bids:
-		ibid.queue_free()
-	
 	all_bids = []
 	
 	for icard in player_cards:
