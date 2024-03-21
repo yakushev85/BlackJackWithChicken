@@ -64,22 +64,8 @@ func exec_do_array():
 	var exec_el_params = str(exec_el).split(":")
 	var func_exec = exec_el_params[0]
 	var func_timeout = int(exec_el_params[1])
-		
-	if func_exec == "player_card":
-		do_player_card()
-	elif func_exec == "chicken_card":
-		do_chicken_card()
-	elif func_exec == "player_bid":
-		do_player_bid()
-	elif func_exec == "chicken_bid":
-		do_chicken_bid()
-	elif func_exec == "chicken_turn":
-		do_chicken_turn()
-	elif func_exec == "show_buttons":
-		do_show_buttons()
-	else:
-		print("Unknown func in exec_array: ", func_exec)
-		return
+	
+	call("do_" + func_exec)
 	
 	$TimersGroup/GameStepTimer.wait_time = func_timeout
 	$TimersGroup/GameStepTimer.start()

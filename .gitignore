@@ -1,5 +1,5 @@
 .DS_Store
-/android/
-*.aab
-*.apk
-/html_export/
+/app/android/
+/app/*.aab
+/app/*.apk
+/app/html_export/

@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Node2DMv",
+"language": "GDScript",
+"path": "res://Node2DMv.gd"
+} ]
+_global_script_class_icons={
+"Node2DMv": ""
+}
+
 [application]
 
 config/name="BlackJack with Chicken"

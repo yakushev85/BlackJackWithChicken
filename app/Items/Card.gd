@@ -1,12 +1,7 @@
-extends Node2D
+extends Node2DMv
 
 var RED_COLOR = Color("ff0000")
 var BLACK_COLOR = Color("000000")
-
-export var speed = 500
-
-var move_position = Vector2.ZERO
-var is_moving = false
 
 func _ready():
 	set_bstatus(true)
@@ -68,21 +63,3 @@ func get_card_val():
 	else:
 		return int(pval)
 
-
-func move_to(new_position):
-	is_moving = true
-	move_position = new_position
-
-
-func _process(delta):
-	if is_moving:
-		var velocity = move_position - position
-		var n_velocity = velocity.normalized()*speed*delta
-		
-		if velocity.length() > n_velocity.length():
-			position = position + n_velocity
-		else:
-			position = move_position
-			is_moving = false
-		
-		
