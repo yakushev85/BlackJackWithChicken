@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="BlackJack with Chicken"
+config/name="Blackjack with Rooster"
 run/main_scene="res://StartScreen.tscn"
 boot_splash/image="res://assets/bg/start_screen.png"
 config/icon="res://icon.png"
