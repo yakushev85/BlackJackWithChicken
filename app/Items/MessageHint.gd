@@ -51,7 +51,7 @@ func animate_move(a_label:Label, is_down=true):
 		new_position.y = new_position.y - y_anim
 	
 	$Tween.interpolate_property(a_label, "rect_position", 
-		a_label.rect_position, new_position, 1, 
+		a_label.rect_position, new_position, 2, 
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 
