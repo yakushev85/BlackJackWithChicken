@@ -18,21 +18,21 @@ script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_left = 30.0
-margin_top = -20.0
+margin_top = -75.0
 margin_right = 542.0
-margin_bottom = 76.0
+margin_bottom = 21.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( -32, -320 )
 color = Color( 0.6, 0.6, 0.6, 0.835294 )
-polygon = PoolVector2Array( 68, 320, 32, 320, 68, 342 )
+polygon = PoolVector2Array( 68, 320, 32, 320, 68, 300 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 30.0
-margin_top = -20.0
+margin_top = -75.0
 margin_right = 534.0
-margin_bottom = 76.0
+margin_bottom = 21.0
 custom_fonts/font = SubResource( 2 )
 text = "Hey!"
 align = 1

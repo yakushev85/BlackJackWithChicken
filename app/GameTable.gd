@@ -10,6 +10,9 @@ export var max_bid_value = 5
 export var card_offset = 20
 export var bid_offset = 40
 
+export var rooster_apear_time = 1.0
+export var rooster_disapear_time = 1.0
+
 var ALL_PREVAL = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 var ALL_SYM = ["1", "2", "c", "s"]
 
@@ -146,6 +149,27 @@ func update_values():
 
 func show_message(msg_text):
 	$ControlsUI/SayBox.set_message(msg_text)
+	show_rooster(true)
+
+func show_rooster(is_message_shown=false):
+	# RoosterSprite: x0 = -150, x1 = 55
+	
+	$Tween.interpolate_property(
+		$RoosterSprite, "position", 
+		$RoosterSprite.position, Vector2(55, $RoosterSprite.position.y),
+		rooster_apear_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	if is_message_shown:
+		$Tween.interpolate_callback(self, rooster_apear_time, "make_message")
+	$Tween.start()
+
+func hide_rooster():
+	$Tween.interpolate_property(
+		$RoosterSprite, "position", 
+		$RoosterSprite.position, Vector2(-150, $RoosterSprite.position.y),
+		rooster_disapear_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+
+func make_message(): 
 	$ControlsUI/SayBox.visible = true
 	$TimersGroup/MessageTimer.start()
 
@@ -276,6 +300,7 @@ func player_win_round():
 
 func _on_MessageTimer_timeout():
 	$ControlsUI/SayBox.visible = false
+	hide_rooster()
 
 
 func _on_FinishRoundTimer_timeout():
