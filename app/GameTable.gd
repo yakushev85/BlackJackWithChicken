@@ -13,6 +13,9 @@ export var bid_offset = 40
 export var rooster_apear_time = 1.0
 export var rooster_disapear_time = 1.0
 
+export var rat_apear_percent = 20
+export var chick_apear_percent = 20
+
 var ALL_PREVAL = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 var ALL_SYM = ["1", "2", "c", "s"]
 
@@ -47,6 +50,7 @@ func _ready():
 	
 	$BgMusicPlayer.play()
 	$PlayerLossAudioPlayer.play()
+	
 
 func init_round():
 	show_message("Let's play, human!")
@@ -54,7 +58,7 @@ func init_round():
 	is_not_doubled = true
 	init_deck()
 	
-	do_array = ["player_card:2", "chicken_card:2", "player_bid:2", "chicken_bid:2", "show_buttons:1"]
+	do_array = ["player_card:2", "chicken_card:2", "player_bid:2", "chicken_bid:2", "show_buttons:1", "check_rat:1"]
 	exec_do_array()
 
 
@@ -136,6 +140,16 @@ func do_show_buttons():
 		$ControlsUI/AllButtons/DoubleButton.show()
 	else:
 		$ControlsUI/AllButtons/DoubleButton.hide()
+
+
+func do_check_rat():
+	if randi() % 100 <= rat_apear_percent:
+		show_rat()
+		
+
+func do_chick():
+	if randi() % 100 <= chick_apear_percent:
+		show_chick()
 # **************************
 # end section for do funcs
 # ************************** 
@@ -154,20 +168,20 @@ func show_message(msg_text):
 func show_rooster(is_message_shown=false):
 	# RoosterSprite: x0 = -150, x1 = 55
 	
-	$Tween.interpolate_property(
+	$RoosterTween.interpolate_property(
 		$RoosterSprite, "position", 
 		$RoosterSprite.position, Vector2(55, $RoosterSprite.position.y),
 		rooster_apear_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	if is_message_shown:
-		$Tween.interpolate_callback(self, rooster_apear_time, "make_message")
-	$Tween.start()
+		$RoosterTween.interpolate_callback(self, rooster_apear_time, "make_message")
+	$RoosterTween.start()
 
 func hide_rooster():
-	$Tween.interpolate_property(
+	$RoosterTween.interpolate_property(
 		$RoosterSprite, "position", 
 		$RoosterSprite.position, Vector2(-150, $RoosterSprite.position.y),
 		rooster_disapear_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Tween.start()
+	$RoosterTween.start()
 
 func make_message(): 
 	$ControlsUI/SayBox.visible = true
@@ -332,6 +346,7 @@ func _on_BidButton_pressed():
 	if player_bid_value < max_bid_value and is_first_turn and player_grains > 0 and chicken_eggs > 0:
 		do_array.append_array(["player_bid:1", "chicken_bid:2"])
 		exec_do_array()
+		
 
 
 func _on_DoubleButton_pressed():
@@ -356,6 +371,7 @@ func _on_HitButton_pressed():
 			chicken_win_round()
 		else:
 			do_show_buttons()
+			do_chick()
 
 
 func _on_StandButton_pressed():
@@ -379,4 +395,74 @@ func show_message_hint(pobject, hvalue, vorientation=true):
 
 func _on_GameStepTimer_timeout():
 	exec_do_array()
+
+
+func show_rat():
+	var new_rat_pos = Vector2($PlayerBidHolder.position.x - 10 + randi() % 50, $PlayerBidHolder.position.y + 35)
+	$RatTween.interpolate_property(
+		$RatSprite, "position", 
+		$RatSprite.position, new_rat_pos,
+		1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$RatTween.start()
+	$TimersGroup/RatTimer.start()
+
+
+func hide_rat():
+	var new_rat_pos = Vector2($PlayerBidHolder.position.x, 800)
+	$RatTween.interpolate_property(
+		$RatSprite, "position", 
+		$RatSprite.position, new_rat_pos,
+		1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$RatTween.start()
+
+
+func show_chick():
+	var chick_index = 0
+	
+	if $ChickenBidHolder.get_child_count() == 0:
+		return
+	elif $ChickenBidHolder.get_child_count() > 1:
+		chick_index = randi() % $ChickenBidHolder.get_child_count()
+	
+	var selected_egg = $ChickenBidHolder.get_child(chick_index) as Node2D
+	var chick_position = selected_egg.global_position
+	selected_egg.queue_free()
+	$ChickSprite.position = chick_position
+	$TimersGroup/ChickTimer.start()
+	
+
+func hide_chick():
+	chicken_bid_value = chicken_bid_value - 1
+		
+	var new_chick_pos = Vector2($ChickSprite.position.x, -100)
+	$ChickTween.interpolate_property(
+		$ChickSprite, "position", 
+		$ChickSprite.position, new_chick_pos,
+		1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$ChickTween.start()
+
+
+func _input(event):
+	if event is InputEventMouseButton and not (event as InputEventMouseButton).is_pressed():
+		var distance_to_rat = (event.position as Vector2).distance_to($RatSprite.position)
+		if distance_to_rat < 30:
+			hide_rat()
+			
+		var distance_to_chick = (event.position as Vector2).distance_to($ChickSprite.position)
+		if distance_to_chick < 30:
+			hide_chick()
+			player_won_eggs = player_won_eggs + 1
+			show_message_hint($ControlsUI/PlayerEggs, 1, false)
+		
+		
+func _on_RatTimer_timeout():
+	if $PlayerBidHolder.get_child_count() > 0 and $PlayerBidHolder.get_child_count() >= player_bid_value:
+		$PlayerBidHolder.get_child(player_bid_value - 1).queue_free()
+		player_bid_value = player_bid_value - 1
+	
+	hide_rat()
+	
+
+func _on_ChickTimer_timeout():
+	hide_chick()
 

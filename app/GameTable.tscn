@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/sound/chicken1.mp3" type="AudioStream" id=13]
 [ext_resource path="res://assets/sound/rooster1.mp3" type="AudioStream" id=14]
 [ext_resource path="res://assets/object/chick2.png" type="Texture" id=15]
-[ext_resource path="res://assets/object/rat.png" type="Texture" id=16]
+[ext_resource path="res://assets/object/rat2.png" type="Texture" id=16]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 1, 1, 1, 1 )
@@ -43,6 +43,8 @@ chicken_bid_item_type = ExtResource( 9 )
 message_hint_type = ExtResource( 11 )
 rooster_apear_time = 0.5
 rooster_disapear_time = 0.5
+rat_apear_percent = 35
+chick_apear_percent = 50
 
 [node name="WoodenBg" type="Sprite" parent="."]
 position = Vector2( 513, 350 )
@@ -175,6 +177,14 @@ one_shot = true
 [node name="GameStepTimer" type="Timer" parent="TimersGroup"]
 one_shot = true
 
+[node name="RatTimer" type="Timer" parent="TimersGroup"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ChickTimer" type="Timer" parent="TimersGroup"]
+wait_time = 3.0
+one_shot = true
+
 [node name="MessageHintHolder" type="Node2D" parent="."]
 
 [node name="BgMusicPlayer" type="AudioStreamPlayer" parent="."]
@@ -200,10 +210,13 @@ texture = ExtResource( 15 )
 
 [node name="RatSprite" type="Sprite" parent="."]
 position = Vector2( 500, 800 )
-scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 16 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="RoosterTween" type="Tween" parent="."]
+
+[node name="RatTween" type="Tween" parent="."]
+
+[node name="ChickTween" type="Tween" parent="."]
 
 [connection signal="pressed" from="ControlsUI/AllButtons/HitButton" to="." method="_on_HitButton_pressed"]
 [connection signal="pressed" from="ControlsUI/AllButtons/StandButton" to="." method="_on_StandButton_pressed"]
@@ -212,3 +225,5 @@ texture = ExtResource( 16 )
 [connection signal="timeout" from="TimersGroup/MessageTimer" to="." method="_on_MessageTimer_timeout"]
 [connection signal="timeout" from="TimersGroup/FinishRoundTimer" to="." method="_on_FinishRoundTimer_timeout"]
 [connection signal="timeout" from="TimersGroup/GameStepTimer" to="." method="_on_GameStepTimer_timeout"]
+[connection signal="timeout" from="TimersGroup/RatTimer" to="." method="_on_RatTimer_timeout"]
+[connection signal="timeout" from="TimersGroup/ChickTimer" to="." method="_on_ChickTimer_timeout"]
