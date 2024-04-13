@@ -387,9 +387,9 @@ func show_message_hint(pobject, hvalue, vorientation=true):
 	
 	$MessageHintHolder.add_child(grain_hint)
 	
-	if hvalue >= 0:
+	if hvalue > 0:
 		grain_hint.set_reward_message("+" + str(hvalue))
-	else:
+	elif hvalue < 0:
 		grain_hint.set_damage_message(str(hvalue))
 
 
@@ -440,16 +440,19 @@ func hide_chick():
 		$ChickSprite.position, new_chick_pos,
 		1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$ChickTween.start()
+	$ChickSprite/ChickAnimationPlayer.play("Walk")
 
 
 func _input(event):
 	if event is InputEventMouseButton and not (event as InputEventMouseButton).is_pressed():
 		var distance_to_rat = (event.position as Vector2).distance_to($RatSprite.position)
 		if distance_to_rat < 30:
+			$TimersGroup/RatTimer.stop()
 			hide_rat()
 			
 		var distance_to_chick = (event.position as Vector2).distance_to($ChickSprite.position)
 		if distance_to_chick < 30:
+			$TimersGroup/ChickTimer.stop()
 			hide_chick()
 			player_won_eggs = player_won_eggs + 1
 			show_message_hint($ControlsUI/PlayerEggs, 1, false)

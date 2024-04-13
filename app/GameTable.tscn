@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/bg/wooden_c.png" type="Texture" id=1]
 [ext_resource path="res://assets/icon/eggs2.png" type="Texture" id=2]
@@ -35,6 +35,21 @@ font_data = ExtResource( 4 )
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 3 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -10.0, 0.0, 10.0, 0.0, -10.0, 0.0, 10.0, 0.0, -10.0, 0.0 ]
+}
+
 [node name="GameTable" type="Node2D"]
 script = ExtResource( 7 )
 card_item_type = ExtResource( 6 )
@@ -44,7 +59,7 @@ message_hint_type = ExtResource( 11 )
 rooster_apear_time = 0.5
 rooster_disapear_time = 0.5
 rat_apear_percent = 35
-chick_apear_percent = 50
+chick_apear_percent = 40
 
 [node name="WoodenBg" type="Sprite" parent="."]
 position = Vector2( 513, 350 )
@@ -207,6 +222,9 @@ texture = ExtResource( 3 )
 [node name="ChickSprite" type="Sprite" parent="."]
 position = Vector2( 400, -100 )
 texture = ExtResource( 15 )
+
+[node name="ChickAnimationPlayer" type="AnimationPlayer" parent="ChickSprite"]
+anims/Walk = SubResource( 5 )
 
 [node name="RatSprite" type="Sprite" parent="."]
 position = Vector2( 500, 800 )
