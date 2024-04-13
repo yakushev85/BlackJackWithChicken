@@ -456,6 +456,7 @@ func _input(event):
 			hide_chick()
 			player_won_eggs = player_won_eggs + 1
 			show_message_hint($ControlsUI/PlayerEggs, 1, false)
+			update_values()
 		
 		
 func _on_RatTimer_timeout():
