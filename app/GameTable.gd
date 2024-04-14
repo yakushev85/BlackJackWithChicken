@@ -46,14 +46,18 @@ func _ready():
 	$ControlsUI/PlayerGrainsLabel.text = str(player_grains)
 	$ControlsUI/ChickenEggsLabel.text = str(chicken_eggs)
 	
-	init_round()
+	init_round(true)
 	
 	$BgMusicPlayer.play()
 	$PlayerLossAudioPlayer.play()
 	
 
-func init_round():
-	show_message("Let's play, human!")
+func init_round(is_first=false):
+	if is_first:
+		show_message("""Hi, human! Note A is 1 or 11, 
+		J-K are 10, digits are as usual!""")
+	else:	
+		show_message("Let's play, human!")
 	is_first_turn = true
 	is_not_doubled = true
 	init_deck()
@@ -393,6 +397,14 @@ func show_message_hint(pobject, hvalue, vorientation=true):
 		grain_hint.set_damage_message(str(hvalue))
 
 
+func show_touch_msg(tpos: Vector2, tmsg: String, vorientation=true):
+	var msg_obj = message_hint_type.instance()
+	msg_obj.position = tpos
+	msg_obj.set_orientation_drop(vorientation)
+	add_child(msg_obj)
+	msg_obj.set_heal_message(tmsg)
+
+
 func _on_GameStepTimer_timeout():
 	exec_do_array()
 
@@ -448,6 +460,7 @@ func _input(event):
 		var distance_to_rat = (event.position as Vector2).distance_to($RatSprite.position)
 		if distance_to_rat < 30:
 			$TimersGroup/RatTimer.stop()
+			show_touch_msg(event.position, "Caught!", false)
 			hide_rat()
 			
 		var distance_to_chick = (event.position as Vector2).distance_to($ChickSprite.position)
@@ -456,6 +469,7 @@ func _input(event):
 			hide_chick()
 			player_won_eggs = player_won_eggs + 1
 			show_message_hint($ControlsUI/PlayerEggs, 1, false)
+			show_touch_msg(event.position, "Caught!", true)
 			update_values()
 		
 		
