@@ -35,29 +35,25 @@ var is_not_doubled = true
 var is_bidding = false
 
 var player_grains = 40
-var chicken_eggs = 30
+var chicken_eggs = 40
 var player_won_eggs = 0
 
 func _ready():
 	randomize()
-	$ControlsUI/SayBox.hide()
+	$SayBox.hide()
 	$ControlsUI/AllButtons.hide()
 	
 	$ControlsUI/PlayerGrainsLabel.text = str(player_grains)
 	$ControlsUI/ChickenEggsLabel.text = str(chicken_eggs)
 	
-	init_round(true)
+	init_round()
 	
 	$BgMusicPlayer.play()
 	$PlayerLossAudioPlayer.play()
 	
 
-func init_round(is_first=false):
-	if is_first:
-		show_message("""Hi, human! Note A is 1 or 11, 
-		J-K are 10, digits are as usual!""")
-	else:	
-		show_message("Let's play, human!")
+func init_round():
+	show_message("Let's play, human!")
 	is_first_turn = true
 	is_not_doubled = true
 	init_deck()
@@ -166,7 +162,7 @@ func update_values():
 	
 
 func show_message(msg_text):
-	$ControlsUI/SayBox.set_message(msg_text)
+	$SayBox.set_message(msg_text)
 	show_rooster(true)
 
 func show_rooster(is_message_shown=false):
@@ -188,7 +184,7 @@ func hide_rooster():
 	$RoosterTween.start()
 
 func make_message(): 
-	$ControlsUI/SayBox.visible = true
+	$SayBox.visible = true
 	$TimersGroup/MessageTimer.start()
 
 
@@ -317,7 +313,7 @@ func player_win_round():
 
 
 func _on_MessageTimer_timeout():
-	$ControlsUI/SayBox.visible = false
+	$SayBox.visible = false
 	hide_rooster()
 
 
@@ -380,6 +376,8 @@ func _on_HitButton_pressed():
 
 func _on_StandButton_pressed():
 	$ControlsUI/AllButtons.hide()
+	var cur_sum = str(get_cards_sum(player_cards))
+	show_message("You get "+cur_sum+". My turn!!")
 	do_array = ["chicken_turn:1"]
 	exec_do_array()
 
