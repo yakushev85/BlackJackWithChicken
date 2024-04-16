@@ -321,12 +321,12 @@ func _on_FinishRoundTimer_timeout():
 	all_bids = []
 	
 	for icard in player_cards:
-		icard.queue_free()
+		icard.move_to(Vector2(-600, icard.position.y), true)
 	
 	player_cards = []
 	
 	for icard in chicken_cards:
-		icard.queue_free()
+		icard.move_to(Vector2(-600, icard.position.y), true)
 		
 	chicken_cards = []
 	
