@@ -1,20 +1,20 @@
 extends Node2D
 
-export (PackedScene) var card_item_type
-export (PackedScene) var player_bid_item_type
-export (PackedScene) var chicken_bid_item_type
-export (PackedScene) var message_hint_type
+@export var card_item_type: PackedScene
+@export var player_bid_item_type: PackedScene
+@export var chicken_bid_item_type: PackedScene
+@export var message_hint_type: PackedScene
 
-export var max_bid_value = 5
+@export var max_bid_value = 5
 
-export var card_offset = 20
-export var bid_offset = 40
+@export var card_offset = 20
+@export var bid_offset = 40
 
-export var rooster_apear_time = 1.0
-export var rooster_disapear_time = 1.0
+@export var rooster_apear_time = 1.0
+@export var rooster_disapear_time = 1.0
 
-export var rat_apear_percent = 20
-export var chick_apear_percent = 20
+@export var rat_apear_percent = 20
+@export var chick_apear_percent = 20
 
 var ALL_PREVAL = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 var ALL_SYM = ["1", "2", "c", "s"]
@@ -168,20 +168,21 @@ func show_message(msg_text):
 func show_rooster(is_message_shown=false):
 	# RoosterSprite: x0 = -150, x1 = 55
 	
-	$RoosterTween.interpolate_property(
+	var roosterTween = create_tween()
+	roosterTween.tween_property(
 		$RoosterSprite, "position", 
-		$RoosterSprite.position, Vector2(55, $RoosterSprite.position.y),
-		rooster_apear_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		Vector2(55, $RoosterSprite.position.y), rooster_apear_time)
 	if is_message_shown:
-		$RoosterTween.interpolate_callback(self, rooster_apear_time, "make_message")
-	$RoosterTween.start()
+		roosterTween.tween_callback(make_message)
+	roosterTween.play()
+
 
 func hide_rooster():
-	$RoosterTween.interpolate_property(
+	var roosterTween = create_tween()
+	roosterTween.tween_property(
 		$RoosterSprite, "position", 
-		$RoosterSprite.position, Vector2(-150, $RoosterSprite.position.y),
-		rooster_disapear_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$RoosterTween.start()
+		Vector2(-150, $RoosterSprite.position.y), rooster_disapear_time)
+	roosterTween.play()
 
 func make_message(): 
 	$SayBox.visible = true
@@ -198,12 +199,13 @@ func init_deck():
 func get_card_from_deck():
 	var nextCardIndex = randi() % deck_of_cardids.size()
 	var nextCard = deck_of_cardids[nextCardIndex]
-	deck_of_cardids.remove(nextCardIndex)
+	#deck_of_cardids.remove(nextCardIndex)
+	deck_of_cardids.remove_at(nextCardIndex)
 	return nextCard
 
 
 func add_card(card_holder, card_index, card_id, will_move = false):
-	var card = card_item_type.instance()
+	var card = card_item_type.instantiate()
 	card.set_cardid(card_id)
 	
 	if will_move:
@@ -243,7 +245,7 @@ func get_cards_sum(acards):
 
 
 func add_bid(bid_holder, bid_index, bit_type, start_x=500, start_y=0):
-	var bid_item = bit_type.instance()
+	var bid_item = bit_type.instantiate()
 	bid_item.position.x = start_x
 	bid_item.position.y = start_y
 	bid_holder.add_child(bid_item)
@@ -336,7 +338,7 @@ func _on_FinishRoundTimer_timeout():
 		Global.game_data.player_eggs = player_won_eggs
 		Global.game_data.player_grains = player_grains
 		Global.game_data.chicken_eggs = chicken_eggs
-		get_tree().change_scene("res://FinishScreen.tscn")
+		get_tree().change_scene_to_file("res://FinishScreen.tscn")
 	
 
 func _on_BidButton_pressed():
@@ -383,7 +385,7 @@ func _on_StandButton_pressed():
 
 
 func show_message_hint(pobject, hvalue, vorientation=true):
-	var grain_hint = message_hint_type.instance()
+	var grain_hint = message_hint_type.instantiate()
 	grain_hint.position = pobject.position
 	grain_hint.set_orientation_drop(vorientation)
 	
@@ -396,7 +398,7 @@ func show_message_hint(pobject, hvalue, vorientation=true):
 
 
 func show_touch_msg(tpos: Vector2, tmsg: String, vorientation=true):
-	var msg_obj = message_hint_type.instance()
+	var msg_obj = message_hint_type.instantiate()
 	msg_obj.position = tpos
 	msg_obj.set_orientation_drop(vorientation)
 	add_child(msg_obj)
@@ -409,21 +411,21 @@ func _on_GameStepTimer_timeout():
 
 func show_rat():
 	var new_rat_pos = Vector2($PlayerBidHolder.position.x - 10 + randi() % 50, $PlayerBidHolder.position.y + 35)
-	$RatTween.interpolate_property(
+	var ratTween = create_tween()
+	ratTween.tween_property(
 		$RatSprite, "position", 
-		$RatSprite.position, new_rat_pos,
-		1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$RatTween.start()
+		new_rat_pos, 1)
+	ratTween.play()
 	$TimersGroup/RatTimer.start()
 
 
 func hide_rat():
 	var new_rat_pos = Vector2($PlayerBidHolder.position.x, 800)
-	$RatTween.interpolate_property(
+	var ratTween = create_tween()
+	ratTween.tween_property(
 		$RatSprite, "position", 
-		$RatSprite.position, new_rat_pos,
-		1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$RatTween.start()
+		new_rat_pos, 1)
+	ratTween.play()
 
 
 func show_chick():
@@ -445,11 +447,11 @@ func hide_chick():
 	chicken_bid_value = chicken_bid_value - 1
 		
 	var new_chick_pos = Vector2($ChickSprite.position.x, -100)
-	$ChickTween.interpolate_property(
+	var chickTween = create_tween()
+	chickTween.tween_property(
 		$ChickSprite, "position", 
-		$ChickSprite.position, new_chick_pos,
-		1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$ChickTween.start()
+		new_chick_pos, 1)
+	chickTween.play()
 	$ChickSprite/ChickAnimationPlayer.play("Walk")
 
 
@@ -481,4 +483,3 @@ func _on_RatTimer_timeout():
 
 func _on_ChickTimer_timeout():
 	hide_chick()
-

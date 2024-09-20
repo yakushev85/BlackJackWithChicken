@@ -2,14 +2,18 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/rooster3.mp3-8973761e33d88bd31310d9c34ce491ce.mp3str"
+uid="uid://tlbofpdgi1ly"
+path="res://.godot/imported/rooster3.mp3-8973761e33d88bd31310d9c34ce491ce.mp3str"
 
 [deps]
 
 source_file="res://assets/sound/rooster3.mp3"
-dest_files=[ "res://.import/rooster3.mp3-8973761e33d88bd31310d9c34ce491ce.mp3str" ]
+dest_files=["res://.godot/imported/rooster3.mp3-8973761e33d88bd31310d9c34ce491ce.mp3str"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

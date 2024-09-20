@@ -1,48 +1,83 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cucpihfivlm1o"]
 
-[ext_resource path="res://assets/fonts/WigglyCurvesRegular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Items/MessageHint.gd" type="Script" id=2]
+[ext_resource type="FontFile" uid="uid://dbmymvpiyrf54" path="res://assets/fonts/WigglyCurvesRegular.ttf" id="1"]
+[ext_resource type="Script" path="res://Items/MessageHint.gd" id="2"]
 
-[sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("1"), ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
 
-[sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("1"), ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
 
-[sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("1"), ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
 
 [node name="MessageHint" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="DamageLabel" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-custom_colors/font_color = Color( 1, 0, 0, 0.776471 )
-custom_fonts/font = SubResource( 1 )
+offset_right = 40.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(1, 0, 0, 0.776471)
+theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 32
 text = "- 999 hp"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HealLabel" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-custom_colors/font_color = Color( 0.160784, 0.431373, 0.854902, 1 )
-custom_fonts/font = SubResource( 2 )
+offset_right = 40.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0.160784, 0.431373, 0.854902, 1)
+theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 32
 text = "+ 999 hp"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RewardLabel" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-custom_colors/font_color = Color( 0.901961, 0.886275, 0.109804, 1 )
-custom_fonts/font = SubResource( 3 )
+offset_right = 40.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0.901961, 0.886275, 0.109804, 1)
+theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 32
 text = "+ 999 hp"
-
-[node name="Tween" type="Tween" parent="."]
-
-[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

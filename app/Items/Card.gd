@@ -16,17 +16,17 @@ func set_card(preval, sym):
 	$Labels/CenterCardSymLabel.text = sym
 	
 	if sym in ["1", "2"]:
-		$Labels/BottomCardDigitLabel.add_color_override("font_color", RED_COLOR)
-		$Labels/TopCardDigitLabel.add_color_override("font_color", RED_COLOR)
-		$Labels/BottomCardSymLabel.add_color_override("font_color", RED_COLOR)
-		$Labels/TopCardSymLabel.add_color_override("font_color", RED_COLOR)
-		$Labels/CenterCardSymLabel.add_color_override("font_color", RED_COLOR)
+		$Labels/BottomCardDigitLabel.add_theme_color_override("font_color", RED_COLOR)
+		$Labels/TopCardDigitLabel.add_theme_color_override("font_color", RED_COLOR)
+		$Labels/BottomCardSymLabel.add_theme_color_override("font_color", RED_COLOR)
+		$Labels/TopCardSymLabel.add_theme_color_override("font_color", RED_COLOR)
+		$Labels/CenterCardSymLabel.add_theme_color_override("font_color", RED_COLOR)
 	else:
-		$Labels/BottomCardDigitLabel.add_color_override("font_color", BLACK_COLOR)
-		$Labels/TopCardDigitLabel.add_color_override("font_color", BLACK_COLOR)
-		$Labels/BottomCardSymLabel.add_color_override("font_color", BLACK_COLOR)
-		$Labels/TopCardSymLabel.add_color_override("font_color", BLACK_COLOR)
-		$Labels/CenterCardSymLabel.add_color_override("font_color", BLACK_COLOR)
+		$Labels/BottomCardDigitLabel.add_theme_color_override("font_color", BLACK_COLOR)
+		$Labels/TopCardDigitLabel.add_theme_color_override("font_color", BLACK_COLOR)
+		$Labels/BottomCardSymLabel.add_theme_color_override("font_color", BLACK_COLOR)
+		$Labels/TopCardSymLabel.add_theme_color_override("font_color", BLACK_COLOR)
+		$Labels/CenterCardSymLabel.add_theme_color_override("font_color", BLACK_COLOR)
 
 
 func set_bstatus(is_back):
@@ -62,4 +62,3 @@ func get_card_val():
 		return 11
 	else:
 		return int(pval)
-

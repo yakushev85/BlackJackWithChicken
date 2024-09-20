@@ -4,15 +4,11 @@ class_name Node2DMv
 
 
 func move_to(new_position, remove_on_finish = false):	
-	var tween = get_node("Tween") as Tween
+	var tween = create_tween()
 	
-	tween.interpolate_property(
-		self, "position", 
-		self.position, new_position, 1, 
-		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position", new_position, 1)
 		
 	if remove_on_finish:
-		tween.interpolate_callback(self, 1, "queue_free")
+		tween.tween_callback(self.queue_free)
 		
-	tween.start()
-
+	tween.play()

@@ -1,39 +1,52 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://dk6m8l8vmd123"]
 
-[ext_resource path="res://assets/fonts/WigglyCurvesRegular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Items/SayBox.gd" type="Script" id=2]
+[ext_resource type="FontFile" uid="uid://dbmymvpiyrf54" path="res://assets/fonts/WigglyCurvesRegular.ttf" id="1"]
+[ext_resource type="Script" path="res://Items/SayBox.gd" id="2"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="DynamicFont" id=2]
-size = 28
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("1"), ExtResource("1")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
 
 [node name="SayBox" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 30.0
-margin_top = -75.0
-margin_right = 542.0
-margin_bottom = 21.0
-custom_styles/panel = SubResource( 1 )
+offset_left = 30.0
+offset_top = -75.0
+offset_right = 542.0
+offset_bottom = 21.0
+theme_override_styles/panel = SubResource("1")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( -32, -320 )
-color = Color( 0.6, 0.6, 0.6, 0.835294 )
-polygon = PoolVector2Array( 68, 320, 32, 320, 68, 300 )
+position = Vector2(-32, -320)
+color = Color(0.6, 0.6, 0.6, 0.835294)
+polygon = PackedVector2Array(68, 320, 32, 320, 68, 300)
 
 [node name="Label" type="Label" parent="."]
-margin_left = 30.0
-margin_top = -75.0
-margin_right = 534.0
-margin_bottom = 21.0
-custom_fonts/font = SubResource( 2 )
+offset_left = 30.0
+offset_top = -75.0
+offset_right = 534.0
+offset_bottom = 21.0
+theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 28
 text = "Hey!"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
