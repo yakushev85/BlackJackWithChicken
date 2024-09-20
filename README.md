@@ -5,7 +5,7 @@ https://yakushev85.github.io/BlackJack_with_Chicken.html
 
 # Requirements
 
-Godot Engine v3.5.3, OpenJDK 11, Python 3
+Godot Engine v4.3
 
 # Export to HTML
 
