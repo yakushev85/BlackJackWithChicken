@@ -1,14 +1,3 @@
 res://default_bus_layout.tres
 res://default_env.tres
 res://StartScreen.tscn
-res://Items/Card.gd
-res://Node2DMv.gd
-res://GameTable.tscn
-res://GameTable.gd
-res://Items/MessageHint.tscn
-res://Items/MessageHint.gd
-res://Items/Card.tscn
-res://Items/PlayerBid.tscn
-res://Items/ChickenBid.tscn
-res://Items/SayBox.tscn
-res://FinishScreen.tscn
