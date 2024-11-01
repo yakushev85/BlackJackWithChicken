@@ -1,6 +1,8 @@
-# BlackjackWithRooster
+![Alt text](app/icon.png)
 
-Blackjack with a rooster, your bet is grain, a rooster bet is egg. If a rooster lose all eggs you win, if you lose all grains a rooster wins. Play online here:
+# Description
+
+A card game blackjack, you need to win all eggs from a rooster. Your bet is grains, a rooster bet is eggs. Also sometimes a rat would try to steal your grains and a chick can appear from egg. Play online here:
 https://yakushev85.github.io/BlackJack_with_Chicken.html
 
 # Requirements
