@@ -1,8 +1,8 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1730370526
-default_bus_layout.tres::AudioBusLayout::4454685324135957595::1730106315::0::1::::<><>::
-default_env.tres::Environment::919957666557792989::1730106323::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1725626935::0::1::::<><>::
+::res://::1733286197
+default_bus_layout.tres::AudioBusLayout::4454685324135957595::1733203265::0::1::::<><>::
+default_env.tres::Environment::919957666557792989::1730370571::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1733202484::0::1::::<><>::
 FinishScreen.gd::GDScript::-1::1726814595::0::1::::<>Node2D<>::
 FinishScreen.tscn::PackedScene::5172296970416430984::1730106323::0::1::::<><>::uid://di6cqi1orsjy5::::res://assets/bg/finish_screen.png<>uid://dbmymvpiyrf54::::res://assets/fonts/WigglyCurvesRegular.ttf<>res://FinishScreen.gd<>uid://tlbofpdgi1ly::::res://assets/sound/rooster3.mp3
 GameTable.gd::GDScript::-1::1726818887::0::1::::<>Node2D<>::
@@ -11,7 +11,7 @@ Global.gd::GDScript::-1::1726814595::0::1::::<>Node<>::
 icon.png::CompressedTexture2D::7821992068788699792::1725626935::1726814637::1::::<><>::
 Node2DMv.gd::GDScript::-1::1726818421::0::1::::Node2DMv<>Node2D<>::
 StartScreen.gd::GDScript::-1::1726814595::0::1::::<>Node2D<>::
-StartScreen.tscn::PackedScene::7472515126267769345::1730106322::0::1::::<><>::uid://hsc5tsofaepv::::res://assets/bg/start_screen.png<>uid://dbmymvpiyrf54::::res://assets/fonts/WigglyCurvesRegular.ttf<>res://StartScreen.gd<>uid://tlbofpdgi1ly::::res://assets/sound/rooster3.mp3
+StartScreen.tscn::PackedScene::7472515126267769345::1730370571::0::1::::<><>::uid://hsc5tsofaepv::::res://assets/bg/start_screen.png<>uid://dbmymvpiyrf54::::res://assets/fonts/WigglyCurvesRegular.ttf<>res://StartScreen.gd<>uid://tlbofpdgi1ly::::res://assets/sound/rooster3.mp3
 ::res://assets/::1725626935
 ::res://assets/bg/::1726814638
 finish_screen.png::CompressedTexture2D::7784918978258674898::1725626935::1726814638::1::::<><>::
@@ -46,4 +46,3 @@ PlayerBid.gd::GDScript::-1::1726814595::0::1::::<>Node2DMv<>::
 PlayerBid.tscn::PackedScene::2317973246438620405::1730106323::0::1::::<><>::uid://cg4eoaqfnjcxs::::res://assets/icon/rgrains1.png<>res://Items/PlayerBid.gd
 SayBox.gd::GDScript::-1::1726814595::0::1::::<>Node2D<>::
 SayBox.tscn::PackedScene::7925934362653265362::1730106323::0::1::::<><>::uid://dbmymvpiyrf54::::res://assets/fonts/WigglyCurvesRegular.ttf<>res://Items/SayBox.gd
-::res://sign/::1725626935

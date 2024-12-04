@@ -3,3 +3,4 @@
 /app/*.aab
 /app/*.apk
 /app/html_export/
+/export_web/

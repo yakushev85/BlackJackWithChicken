@@ -1,0 +1,10 @@
+res://Items/Card.tscn::88a9f216f586219f24216bfb9088facf::1730106323::res://.godot/exported/133200997/export-412de7c6e43914dd9b06cc18f613210b-Card.scn
+res://Items/ChickenBid.tscn::12203b0e0623ba1fb0966435b2312c0d::1730106323::res://.godot/exported/133200997/export-3cdc6b91f38b9420035532245c3f67f6-ChickenBid.scn
+res://Items/MessageHint.tscn::03464ea61464ce45369142061f74ad26::1730106323::res://.godot/exported/133200997/export-490b8c283cdc098720a2119b6105a4c7-MessageHint.scn
+res://Items/PlayerBid.tscn::73923e1252342a3c3dd2278df6f956b8::1730106323::res://.godot/exported/133200997/export-f5f60855aa128448b28e09415e6d1a4d-PlayerBid.scn
+res://Items/SayBox.tscn::f1e1bccd85e9dc11edc995b93264b907::1730106323::res://.godot/exported/133200997/export-4fc399e280db46392d2b328dec4c72c2-SayBox.scn
+res://default_bus_layout.tres::32ff4a8f6f9b490705743b287c77463e::1733286199::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+res://default_env.tres::229124bdd4092ea383d8e2af91a36ef3::1733287026::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://FinishScreen.tscn::33b7f3f04d400413d776d4988a08e484::1730106323::res://.godot/exported/133200997/export-92ef928f511656626221287a1828adf1-FinishScreen.scn
+res://GameTable.tscn::128db552ed37a78e2f9e651ab1e19ca9::1733287026::res://.godot/exported/133200997/export-1c96a923f0092cbcce0d573ffa0805e1-GameTable.scn
+res://StartScreen.tscn::0db2c88ee50b43d81c5cf849fa1598e7::1733287026::res://.godot/exported/133200997/export-5499ab0d52e1fe3b6c554573016d72f7-StartScreen.scn
