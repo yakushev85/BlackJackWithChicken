@@ -3,7 +3,7 @@
 # Description
 
 A card game blackjack, you need to win all eggs from a rooster. Your bet is grains, a rooster bet is eggs. Also sometimes a rat would try to steal your grains and a chick can appear from egg. Play online here:
-https://yakushev85.github.io/BlackJack_with_Chicken.html
+https://yakushev85.github.io/Blackjack%20with%20Rooster.html
 
 # Requirements
 
