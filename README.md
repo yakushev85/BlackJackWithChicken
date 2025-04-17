@@ -7,7 +7,7 @@ https://yakushev85.github.io/Blackjack%20with%20Rooster.html
 
 # Requirements
 
-Godot Engine v4.3
+Godot Engine v4.4
 
 # Export to HTML
 

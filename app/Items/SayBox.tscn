@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk6m8l8vmd123"]
 
 [ext_resource type="FontFile" uid="uid://dbmymvpiyrf54" path="res://assets/fonts/WigglyCurvesRegular.ttf" id="1"]
-[ext_resource type="Script" path="res://Items/SayBox.gd" id="2"]
+[ext_resource type="Script" uid="uid://bgb2volfo6j85" path="res://Items/SayBox.gd" id="2"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 corner_radius_top_left = 20

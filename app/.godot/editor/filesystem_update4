@@ -1,4 +1,10 @@
+res://Items/Card.tscn
+res://Items/ChickenBid.tscn
+res://Items/MessageHint.tscn
+res://Items/PlayerBid.tscn
+res://Items/SayBox.tscn
+res://FinishScreen.tscn
+res://GameTable.tscn
+res://StartScreen.tscn
 res://default_bus_layout.tres
 res://default_env.tres
-res://StartScreen.tscn
-res://GameTable.tscn

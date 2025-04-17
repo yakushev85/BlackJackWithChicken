@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://di6cqi1orsjy5" path="res://assets/bg/finish_screen.png" id="1"]
 [ext_resource type="FontFile" uid="uid://dbmymvpiyrf54" path="res://assets/fonts/WigglyCurvesRegular.ttf" id="2"]
-[ext_resource type="Script" path="res://FinishScreen.gd" id="3"]
+[ext_resource type="Script" uid="uid://bman63t68dh3o" path="res://FinishScreen.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://tlbofpdgi1ly" path="res://assets/sound/rooster3.mp3" id="4"]
 
 [sub_resource type="FontFile" id="1"]

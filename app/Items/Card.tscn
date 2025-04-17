@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b6jcjwe8rogn2" path="res://assets/fonts/Cards-LVMG.ttf" id="1"]
 [ext_resource type="FontFile" uid="uid://dbmymvpiyrf54" path="res://assets/fonts/WigglyCurvesRegular.ttf" id="2"]
-[ext_resource type="Script" path="res://Items/Card.gd" id="3"]
+[ext_resource type="Script" uid="uid://bsurqagwqqlnl" path="res://Items/Card.gd" id="3"]
 [ext_resource type="FontFile" uid="uid://bd2hc1qap6wmk" path="res://assets/fonts/AcedIt-gD91.ttf" id="4"]
 
 [sub_resource type="StyleBoxFlat" id="4"]
