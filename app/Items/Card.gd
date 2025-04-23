@@ -1,4 +1,5 @@
-extends Node2DMv
+extends Node2D
+
 
 var RED_COLOR = Color("ff0000")
 var BLACK_COLOR = Color("000000")
@@ -62,3 +63,14 @@ func get_card_val():
 		return 11
 	else:
 		return int(pval)
+
+
+func move_to(new_position, remove_on_finish = false):	
+	var tween = create_tween()
+	
+	tween.tween_property(self, "position", new_position, 1)
+		
+	if remove_on_finish:
+		tween.tween_callback(self.queue_free)
+		
+	tween.play()
