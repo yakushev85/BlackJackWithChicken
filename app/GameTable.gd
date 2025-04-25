@@ -58,7 +58,10 @@ func init_round():
 	is_not_doubled = true
 	init_deck()
 	
-	do_array = ["player_card:2", "chicken_card:2", "player_bid:2", "chicken_bid:2", "show_buttons:1", "check_rat:1"]
+	do_array = [
+		"player_card:2", "chicken_card:2", 
+		"player_bid:2", "chicken_bid:2", 
+		"show_buttons:1", "check_rat:1"]
 	exec_do_array()
 
 

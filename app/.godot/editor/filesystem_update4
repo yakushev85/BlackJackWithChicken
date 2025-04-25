@@ -1,8 +1,3 @@
 res://default_bus_layout.tres
 res://default_env.tres
-res://Items/ChickenBid.tscn
-res://Items/ChickenBid.gd
-res://Items/PlayerBid.gd
-res://StartScreen.tscn
 res://GameTable.tscn
-res://Items/Card.gd
