@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://8a3xe5ttccvd" path="res://Items/PlayerBid.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://cjb65s83j58wg" path="res://Items/ChickenBid.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dk6m8l8vmd123" path="res://Items/SayBox.tscn" id="10"]
+[ext_resource type="AudioStream" uid="uid://b1ut2ul6codw3" path="res://assets/sound/bg_music_fadeinout.mp3" id="10_uv07y"]
 [ext_resource type="PackedScene" uid="uid://cucpihfivlm1o" path="res://Items/MessageHint.tscn" id="11"]
-[ext_resource type="AudioStream" uid="uid://djyu5b8dymt1v" path="res://assets/sound/bg_music.mp3" id="12"]
 [ext_resource type="AudioStream" uid="uid://cenutwvvqctrr" path="res://assets/sound/chicken1.mp3" id="13"]
 [ext_resource type="AudioStream" uid="uid://p7yg75x3llwj" path="res://assets/sound/rooster1.mp3" id="14"]
 [ext_resource type="Texture2D" uid="uid://drg1ms6brcmm6" path="res://assets/object/chick2.png" id="15"]
@@ -227,7 +227,7 @@ one_shot = true
 [node name="MessageHintHolder" type="Node2D" parent="."]
 
 [node name="BgMusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12")
+stream = ExtResource("10_uv07y")
 volume_db = -6.0
 bus = &"BgBus"
 
